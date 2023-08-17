@@ -10,6 +10,8 @@ from telegram.ext import (
     Filters,
 )
 
+from run import detect_intent_texts
+
 
 def start(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /start is issued."""
@@ -22,7 +24,10 @@ def start(update: Update, context: CallbackContext) -> None:
 
 def echo(update: Update, context: CallbackContext) -> None:
     """Echo the user message."""
-    update.message.reply_text(update.message.text)
+    res = detect_intent_texts('frqhero', update.message.chat_id, update.message.text, 'RU')
+    if not res:
+        res = 'huh'
+    update.message.reply_text(res)
 
 
 def main() -> None:
