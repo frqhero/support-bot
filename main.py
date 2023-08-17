@@ -13,6 +13,9 @@ from telegram.ext import (
 from run import detect_intent_texts
 
 
+load_dotenv()
+
+
 def start(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /start is issued."""
     user = update.effective_user
@@ -24,7 +27,7 @@ def start(update: Update, context: CallbackContext) -> None:
 
 def echo(update: Update, context: CallbackContext) -> None:
     """Echo the user message."""
-    res = detect_intent_texts('frqhero', update.message.chat_id, update.message.text, 'RU')
+    res = detect_intent_texts(project_id, update.message.chat_id, update.message.text, 'RU')
     if not res:
         res = 'huh'
     update.message.reply_text(res)
@@ -47,4 +50,5 @@ def main() -> None:
 
 
 if __name__ == '__main__':
+    project_id = os.getenv('PROJECT_ID')
     main()
