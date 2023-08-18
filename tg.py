@@ -27,10 +27,11 @@ def start(update: Update, context: CallbackContext) -> None:
 
 def echo(update: Update, context: CallbackContext) -> None:
     """Echo the user message."""
-    res = detect_intent_texts(project_id, update.message.chat_id, update.message.text, 'RU')
-    if not res:
-        res = 'huh'
-    update.message.reply_text(res)
+    is_fallback, response_text = detect_intent_texts(
+        project_id, update.message.chat_id, update.message.text, 'RU'
+    )
+    if not is_fallback:
+        update.message.reply_text(response_text)
 
 
 def main() -> None:

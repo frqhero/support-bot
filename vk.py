@@ -11,17 +11,18 @@ load_dotenv()
 
 
 def echo(event, vk_api):
-    res = detect_intent_texts(project_id, event.user_id, event.text, 'RU')
-    if not res:
-        res = 'huh'
-    vk_api.messages.send(
-        user_id=event.user_id,
-        message=res,
-        random_id=random.randint(1, 1000)
+    is_fallback, response_text = detect_intent_texts(
+        project_id, event.user_id, event.text, 'RU'
     )
+    if not is_fallback:
+        vk_api.messages.send(
+            user_id=event.user_id,
+            message=response_text,
+            random_id=random.randint(1, 1000),
+        )
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     vk_token = os.getenv('VK_TOKEN')
     project_id = os.getenv('PROJECT_ID')
     vk_session = vk.VkApi(token=vk_token)
