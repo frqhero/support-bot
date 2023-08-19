@@ -4,7 +4,8 @@
 In order the script to work please create `.env` file and specify these env vars:  
 `TELEGRAM_TOKEN`  
 `PROJECT_ID`  
-`VK_TOKEN`
+`VK_TOKEN`  
+`CREDENTIALS_PATH`  
 
 ## Installation
 1. Clone `git clone ...`

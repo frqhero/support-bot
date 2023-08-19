@@ -1,4 +1,14 @@
+import os
+
+from dotenv import load_dotenv
+from google.auth import environment_vars
 from google.cloud import dialogflow
+
+
+load_dotenv()
+
+
+os.environ[environment_vars.CREDENTIALS] = os.getenv('CREDENTIALS_PATH')
 
 
 def detect_intent_texts(project_id, session_id, text, language_code):
