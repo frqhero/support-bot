@@ -26,7 +26,6 @@ class TelegramLogsHandler(logging.Handler):
 
 
 def echo(event, vk_api):
-    0 / 0
     is_fallback, response_text = detect_intent_texts(
         project_id, event.user_id, event.text, 'RU'
     )
