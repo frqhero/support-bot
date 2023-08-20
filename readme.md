@@ -16,3 +16,6 @@ In order the script to work please create `.env` file and specify these env vars
 5. Create `.env` file in the project root directory and enter the env vars
 6. Run the script 
    * `python3 main.py`
+
+## Demo
+![Demo](demo.gif)
