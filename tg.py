@@ -27,10 +27,12 @@ def start(update: Update, context: CallbackContext) -> None:
     )
 
 
-def echo(update: Update, context: CallbackContext) -> None:
-    """Echo the user message."""
+def handle_text_messages(update: Update, context: CallbackContext) -> None:
     is_fallback, response_text = detect_intent_texts(
-        context.bot.project_id, update.message.chat_id, update.message.text, 'RU'
+        context.bot.project_id,
+        update.message.chat_id,
+        update.message.text,
+        'RU',
     )
     if not is_fallback:
         update.message.reply_text(response_text)
@@ -50,7 +52,7 @@ def main() -> None:
     dispatcher.add_handler(CommandHandler('start', start))
 
     dispatcher.add_handler(
-        MessageHandler(Filters.text & ~Filters.command, echo)
+        MessageHandler(Filters.text & ~Filters.command, handle_text_messages)
     )
 
     dispatcher.add_error_handler(error_handler)

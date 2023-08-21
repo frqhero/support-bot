@@ -11,7 +11,7 @@ from contact_dialogflow import detect_intent_texts
 from logging_handler import TelegramLogsHandler
 
 
-def echo(event, vk_api):
+def handle_messages(event, vk_api):
     is_fallback, response_text = detect_intent_texts(
         project_id, event.user_id, event.text, 'RU'
     )
@@ -41,7 +41,7 @@ if __name__ == '__main__':
         try:
             for event in longpoll.listen():
                 if event.type == VkEventType.MESSAGE_NEW and event.to_me:
-                    echo(event, vk_api)
+                    handle_messages(event, vk_api)
         except Exception:
             exception_data = traceback.format_exc().splitlines()
             bot.logger.warning(exception_data[-1])
