@@ -11,7 +11,7 @@ from telegram.ext import (
     Filters,
 )
 
-from run import detect_intent_texts
+from contact_dialogflow import detect_intent_texts
 
 
 load_dotenv()

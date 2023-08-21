@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 from vk_api.longpoll import VkLongPoll, VkEventType
 import vk_api as vk
 
-from run import detect_intent_texts
+from contact_dialogflow import detect_intent_texts
 
 
 load_dotenv()
