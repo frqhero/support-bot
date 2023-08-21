@@ -14,9 +14,6 @@ from telegram.ext import (
 from contact_dialogflow import detect_intent_texts
 
 
-load_dotenv()
-
-
 class TelegramLogsHandler(logging.Handler):
     def __init__(self, tg_bot, chat_id):
         super().__init__()

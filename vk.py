@@ -11,9 +11,6 @@ import vk_api as vk
 from contact_dialogflow import detect_intent_texts
 
 
-load_dotenv()
-
-
 class TelegramLogsHandler(logging.Handler):
     def __init__(self, tg_bot, chat_id):
         super().__init__()
@@ -38,6 +35,7 @@ def echo(event, vk_api):
 
 
 if __name__ == '__main__':
+    load_dotenv()
     vk_token = os.getenv('VK_TOKEN')
     project_id = os.getenv('PROJECT_ID')
     vk_session = vk.VkApi(token=vk_token)

@@ -5,9 +5,6 @@ from dotenv import load_dotenv
 from google.cloud import dialogflow
 
 
-load_dotenv()
-
-
 def create_intent(project_id, display_name, training_phrases_parts, message_texts):
     """Create an intent of the given intent type."""
 
@@ -36,6 +33,7 @@ def create_intent(project_id, display_name, training_phrases_parts, message_text
 
 
 if __name__ == '__main__':
+    load_dotenv()
     with open("questions.json", "r") as my_file:
         questions_json = my_file.read()
 
