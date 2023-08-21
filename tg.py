@@ -1,4 +1,3 @@
-import logging
 import os
 
 from dotenv import load_dotenv
@@ -12,17 +11,7 @@ from telegram.ext import (
 )
 
 from contact_dialogflow import detect_intent_texts
-
-
-class TelegramLogsHandler(logging.Handler):
-    def __init__(self, tg_bot, chat_id):
-        super().__init__()
-        self.chat_id = chat_id
-        self.tg_bot = tg_bot
-
-    def emit(self, record):
-        log_entry = self.format(record)
-        self.tg_bot.send_message(chat_id=self.chat_id, text=log_entry)
+from logging_handler import TelegramLogsHandler
 
 
 def error_handler(update: object, context: CallbackContext) -> None:
