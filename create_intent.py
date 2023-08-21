@@ -56,8 +56,8 @@ if __name__ == '__main__':
     json_file_path = 'questions.json'
     if custom_path:
         json_file_path = custom_path
-    with open(json_file_path, 'r') as my_file:
-        questions_json = my_file.read()
+    with open(json_file_path, 'r') as json_file:
+        questions_json = json_file.read()
 
     questions = json.loads(questions_json)
 
