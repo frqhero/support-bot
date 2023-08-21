@@ -34,8 +34,7 @@ def handle_text_messages(update: Update, context: CallbackContext) -> None:
         update.message.text,
         'RU',
     )
-    if not is_fallback:
-        update.message.reply_text(response_text)
+    update.message.reply_text(response_text)
 
 
 def main() -> None:
