@@ -37,7 +37,7 @@ if __name__ == '__main__':
     bot.logger.addHandler(TelegramLogsHandler(bot, tg_chat_id))
     bot.logger.warning('Dialogflow bot via vk has been started')
 
-    while 1:
+    while True:
         try:
             for event in longpoll.listen():
                 if event.type == VkEventType.MESSAGE_NEW and event.to_me:
