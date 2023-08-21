@@ -4,15 +4,12 @@ from google.auth import environment_vars
 from google.cloud import dialogflow
 
 
-os.environ[environment_vars.CREDENTIALS] = os.getenv('CREDENTIALS_PATH')
-
-
 def detect_intent_texts(project_id, session_id, text, language_code):
     """Returns the result of detect intent with texts as inputs.
 
     Using the same `session_id` between requests allows continuation
     of the conversation."""
-
+    os.environ[environment_vars.CREDENTIALS] = os.getenv('CREDENTIALS_PATH')
     session_client = dialogflow.SessionsClient()
 
     session = session_client.session_path(project_id, session_id)
