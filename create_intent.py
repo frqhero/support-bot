@@ -63,10 +63,10 @@ if __name__ == '__main__':
 
     project_id = os.getenv('PROJECT_ID')
 
-    for display_name, qs_n_answer in questions.items():
+    for display_name, questions_and_answer in questions.items():
         create_intent(
             project_id,
             display_name,
-            qs_n_answer['questions'],
-            [qs_n_answer['answer']],
+            questions_and_answer['questions'],
+            [questions_and_answer['answer']],
         )
