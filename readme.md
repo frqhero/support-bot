@@ -6,7 +6,7 @@ In order the script to work please create `.env` file and specify these env vars
 `PROJECT_ID`  
 `VK_TOKEN`  
 `CREDENTIALS_PATH`  
-`TG_CHAT_ID_SEND_ERRORS_TO`  
+`TG_CHAT_ID`  
 
 ## Installation
 1. Clone `git clone ...`

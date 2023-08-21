@@ -43,7 +43,7 @@ def main() -> None:
     updater = Updater(telegram_token)
     bot = updater.bot
     bot.project_id = os.getenv('PROJECT_ID')
-    tg_chat_id = os.getenv('TG_CHAT_ID_SEND_ERRORS_TO')
+    tg_chat_id = os.getenv('TG_CHAT_ID')
     bot.logger.addHandler(TelegramLogsHandler(bot, tg_chat_id))
     bot.logger.warning('Dialogflow bot via tg has been started')
     dispatcher = updater.dispatcher
