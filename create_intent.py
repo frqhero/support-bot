@@ -1,3 +1,4 @@
+import argparse
 import json
 import os
 
@@ -5,7 +6,16 @@ from dotenv import load_dotenv
 from google.cloud import dialogflow
 
 
-def create_intent(project_id, display_name, training_phrases_parts, message_texts):
+def is_file(filename):
+    if os.path.isfile(filename):
+        return filename
+    else:
+        raise argparse.ArgumentTypeError(f'{filename} is not a valid filename')
+
+
+def create_intent(
+    project_id, display_name, training_phrases_parts, message_texts
+):
     """Create an intent of the given intent type."""
 
     intents_client = dialogflow.IntentsClient()
@@ -13,7 +23,9 @@ def create_intent(project_id, display_name, training_phrases_parts, message_text
     parent = dialogflow.AgentsClient.agent_path(project_id)
     training_phrases = []
     for training_phrases_part in training_phrases_parts:
-        part = dialogflow.Intent.TrainingPhrase.Part(text=training_phrases_part)
+        part = dialogflow.Intent.TrainingPhrase.Part(
+            text=training_phrases_part
+        )
         # Here we create a new training phrase for each provided part.
         training_phrase = dialogflow.Intent.TrainingPhrase(parts=[part])
         training_phrases.append(training_phrase)
@@ -22,19 +34,29 @@ def create_intent(project_id, display_name, training_phrases_parts, message_text
     message = dialogflow.Intent.Message(text=text)
 
     intent = dialogflow.Intent(
-        display_name=display_name, training_phrases=training_phrases, messages=[message]
+        display_name=display_name,
+        training_phrases=training_phrases,
+        messages=[message],
     )
 
     response = intents_client.create_intent(
-        request={"parent": parent, "intent": intent}
+        request={'parent': parent, 'intent': intent}
     )
 
-    print("Intent created: {}".format(response))
+    print('Intent created: {}'.format(response))
 
 
 if __name__ == '__main__':
     load_dotenv()
-    with open("questions.json", "r") as my_file:
+    parser = argparse.ArgumentParser(description='Add dialogflow intents')
+    parser.add_argument(
+        '-p', '--path', help='Specify path to json file', type=is_file
+    )
+    custom_path = parser.parse_args().path
+    json_file_path = 'questions.json'
+    if custom_path:
+        json_file_path = custom_path
+    with open(json_file_path, 'r') as my_file:
         questions_json = my_file.read()
 
     questions = json.loads(questions_json)
@@ -42,4 +64,9 @@ if __name__ == '__main__':
     project_id = os.getenv('PROJECT_ID')
 
     for display_name, qs_n_answer in questions.items():
-        create_intent(project_id, display_name, qs_n_answer['questions'], [qs_n_answer['answer']])
+        create_intent(
+            project_id,
+            display_name,
+            qs_n_answer['questions'],
+            [qs_n_answer['answer']],
+        )
