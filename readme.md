@@ -14,8 +14,9 @@ In order the script to work please create `.env` file and specify these env vars
 3. Activate venv `source venv/bin/python`
 4. Install dependencies `pip install -r requirements.txt`
 5. Create `.env` file in the project root directory and enter the env vars
-6. Run the script 
-   * `python3 main.py`
+6. Run the script(s)
+   * `python3 tg.py`
+   * `python3 vk.py`
 
 ## Demo
 ![Demo](demo.gif)
