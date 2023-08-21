@@ -30,7 +30,7 @@ def start(update: Update, context: CallbackContext) -> None:
 def echo(update: Update, context: CallbackContext) -> None:
     """Echo the user message."""
     is_fallback, response_text = detect_intent_texts(
-        project_id, update.message.chat_id, update.message.text, 'RU'
+        context.bot.project_id, update.message.chat_id, update.message.text, 'RU'
     )
     if not is_fallback:
         update.message.reply_text(response_text)
@@ -41,6 +41,7 @@ def main() -> None:
     telegram_token = os.getenv('TELEGRAM_TOKEN')
     updater = Updater(telegram_token)
     bot = updater.bot
+    bot.project_id = os.getenv('PROJECT_ID')
     tg_chat_id = os.getenv('TG_CHAT_ID_SEND_ERRORS_TO')
     bot.logger.addHandler(TelegramLogsHandler(bot, tg_chat_id))
     bot.logger.warning('Dialogflow bot via tg has been started')
@@ -59,5 +60,4 @@ def main() -> None:
 
 
 if __name__ == '__main__':
-    project_id = os.getenv('PROJECT_ID')
     main()
