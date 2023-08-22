@@ -22,4 +22,6 @@ In order the script to work please create `.env` file and specify these env vars
 ![Demo](demo.gif)
 
 ## Bot learning
-It is possible to programmatically extend the bot's capabilities by teaching it using a JSON file with a specific structure. The create_intent.py script expects to receive the JSON structure file as input. The repository contains an appropriate example file named 'questions.json.' This script parses the data, prepares it, and sends it to Google's Dialogflow API in the expected format, ultimately creating new intents in the agent.
+It is possible to programmatically extend the bot's capabilities by teaching it using a JSON file with a specific structure. The create_intent.py script expects to receive the JSON structure file as input. The repository contains an appropriate example file named 'questions.json.' This script parses the data, prepares it, and sends it to Google's Dialogflow API in the expected format, ultimately creating new intents in the agent.  
+`python3 create_intent.py` starts the script and use 'questions.json' file as input or  
+`python3 create_intent.py filename.json` you can also specify a custom file passing the file name.  
