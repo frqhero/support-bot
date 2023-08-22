@@ -50,12 +50,13 @@ if __name__ == '__main__':
     load_dotenv()
     parser = argparse.ArgumentParser(description='Add dialogflow intents')
     parser.add_argument(
-        '-p', '--path', help='Specify path to json file', type=is_file
+        '-p',
+        '--path',
+        help='Specify path to json file',
+        type=is_file,
+        default='questions.json',
     )
-    custom_path = parser.parse_args().path
-    json_file_path = 'questions.json'
-    if custom_path:
-        json_file_path = custom_path
+    json_file_path = parser.parse_args().path
     with open(json_file_path, 'r') as json_file:
         questions_json = json_file.read()
 
