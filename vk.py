@@ -32,7 +32,7 @@ if __name__ == '__main__':
     longpoll = VkLongPoll(vk_session)
 
     telegram_token = os.getenv('TELEGRAM_TOKEN')
-    tg_chat_id = os.getenv('TG_CHAT_ID_SEND_ERRORS_TO')
+    tg_chat_id = os.getenv('TG_CHAT_ID')
     bot = telegram.Bot(token=telegram_token)
     bot.logger.addHandler(TelegramLogsHandler(bot, tg_chat_id))
     bot.logger.warning('Dialogflow bot via vk has been started')
